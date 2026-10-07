@@ -23,5 +23,5 @@ Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/admin/about', [AboutController::class, 'index']);
 
-Route::get('/admin/students', [StudentsController::class, 'index']);
+Route::get('/admin/students', [StudentController::class, 'index']);
 

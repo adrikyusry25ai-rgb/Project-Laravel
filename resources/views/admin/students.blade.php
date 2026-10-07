@@ -1,58 +1,7 @@
 <x-admin.layout>
 @php
 
-$students = [
-    [
-        'nis' => '10001',
-        'name' => 'Ahmad Adrik Yusry',
-        'classroom' => 'XI RPL 3',
-    ],
-    [
-        'nis' => '10002',
-        'name' => 'Reynanda Putra Sarva Ferdinand',
-        'classroom' => 'XI RPL 3',
-    ],
-    [
-        'nis' => '10003',
-        'name' => 'Cahyo Ramadhan',
-        'classroom' => 'XI RPL 2',
-    ],
-    [
-        'nis' => '10004',
-        'name' => 'Dimas Pratama',
-        'classroom' => 'XI RPL 2',
-    ],
-    [
-        'nis' => '10005',
-        'name' => 'Eko Saputra',
-        'classroom' => 'XI RPL 1',
-    ],
-    [
-        'nis' => '10006',
-        'name' => 'Fajar Nugroho',
-        'classroom' => 'XI RPL 2',
-    ],
-    [
-        'nis' => '10007',
-        'name' => 'Galih Maulana',
-        'classroom' => 'XI RPL 1',
-    ],
-    [
-        'nis' => '10008',
-        'name' => 'Hafiz Akbar',
-        'classroom' => 'XI RPL 2',
-    ],
-    [
-        'nis' => '10009',
-        'name' => 'Ilham Hidayat',
-        'classroom' => 'XI RPL 1',
-    ],
-    [
-        'nis' => '10010',
-        'name' => 'Joko Firmansyah',
-        'classroom' => 'XI RPL 2',
-    ],
-];
+
 
 @endphp
 
