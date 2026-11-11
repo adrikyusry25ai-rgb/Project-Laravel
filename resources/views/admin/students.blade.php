@@ -98,7 +98,7 @@
                             <th scope="col" class="px-4 py-3">Name</th>
                             <th scope="col" class="px-4 py-3">NIS</th>
                             <th scope="col" class="px-4 py-3">Class</th>
-                            <th scope="col" class="px-4 py-3">Status</th>
+                            <th scope="col" class="px-4 py-3">Address</th>
                             <th scope="col" class="px-4 py-3">
                                 <span class="sr-only">Actions</span>
                             </th>
@@ -111,14 +111,18 @@
                                         {{ $loop->iteration }}
                                     </td>
                                     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $student['name'] }}
+                                        {{ $student->name }}
                                     </td>
                                     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $student['nis'] }}
+                                        {{ $student->nis }}
                                     </td>
                                     <td class="px-4 py-3">
-                                        {{ $student['classroom'] }}
+                                        {{ $student->classroom->name }}
                                     </td>
+                                    <td class="px-4 py-3">
+                                        {{ $student->address }}
+                                    </td>
+                                </tr>
                         @endforeach
                     </tbody>
                 </table>
