@@ -74,4 +74,5 @@
         </div>
     </div>
     </section>
+    @include('admin.subject.create')
 </x-admin.layout>

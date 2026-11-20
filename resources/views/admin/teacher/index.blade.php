@@ -80,4 +80,5 @@
         </div>
     </div>
     </section>
+    @include('admin.teacher.create')
 </x-admin.layout>

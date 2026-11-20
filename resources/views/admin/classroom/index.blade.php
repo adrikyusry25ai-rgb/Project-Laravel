@@ -79,4 +79,5 @@
         </div>
     </div>
     </section>
+    @include('admin.classroom.create')
 </x-admin.layout>
