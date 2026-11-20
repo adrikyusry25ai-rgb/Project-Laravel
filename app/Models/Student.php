@@ -13,10 +13,9 @@ class Student extends Model
 
     protected $with = ["classroom"];
     protected $fillable = [
+        'nis',
         'name',
-        'email',
         'classroom_id',
-        'phone',
         'address',
     ];
 

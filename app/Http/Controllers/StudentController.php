@@ -2,70 +2,112 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Classroom;
 use App\Models\Student;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class StudentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan daftar siswa.
      */
-    public function index()
+    public function index(Request $request)
     {
-//
-
-        $students = Student::all();
-        return view('admin.student.index', compact('students'));
+        $students = Student::with('classroom')
+            ->when($request->search, function ($query, $search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('nis', 'like', "%{$search}%")
+                        ->orWhere('name', 'like', "%{$search}%")
+                        ->orWhere('address', 'like', "%{$search}%");
+                });
+            })
+            ->when($request->classroom_id, function ($query, $classroomId) {
+                $query->where('classroom_id', $classroomId);
+            })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
 
         $classrooms = Classroom::query()->get();
-        return view('admin.student.index', compact('classrooms'));
+
+        return view('admin.student.index', compact(
+            'students',
+            'classrooms'
+        ));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form tambah siswa.
      */
     public function create()
     {
-        //
+        $classrooms = Classroom::query()->get();
+
+        return view('admin.student.create', compact('classrooms'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menyimpan siswa baru.
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
-     * Display the specified resource.
+     * Menampilkan detail siswa.
      */
-    public function show(string $id)
+    public function show(Student $student)
     {
-        //
+        $student->load('classroom');
+
+        return view('admin.student.show', compact('student'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Menampilkan form edit siswa.
      */
-    public function edit(string $id)
+    public function edit(Student $student)
     {
-        //
+        $classrooms = Classroom::orderBy('name')->get();
+
+        return view('admin.student.edit', compact(
+            'student',
+            'classrooms'
+        ));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Memperbarui data siswa.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Student $student)
     {
-        //
+        $validated = $request->validate([
+            'nis' => 'required|string|max:20|unique:students,nis,' . $student->id,
+            'name' => 'required|string|max:255',
+            'classroom_id' => 'required|exists:classrooms,id',
+            'address' => 'required|string',
+        ]);
+
+        $student->update($validated);
+
+        return redirect()
+            ->route('admin.student.index')
+            ->with('success', 'Data siswa berhasil diperbarui.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus siswa.
      */
-    public function destroy(string $id)
+    public function destroy(Student $student)
     {
-        //
+        $student->delete();
+
+        return redirect()
+            ->route('admin.student.index')
+            ->with('success', 'Data siswa berhasil dihapus.');
     }
 }

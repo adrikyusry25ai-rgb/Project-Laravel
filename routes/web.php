@@ -24,13 +24,16 @@ Route::get('/layout', function () {
     return view('layout');
 });
 
-Route::post('/admin/student', [StudentController::class, 'store'])->name('admin.student.store');
+Route::post('/admin/students', [StudentController::class, 'store'])->name('admin.student.store');
+
+Route::get('/admin/students', [StudentController::class, 'index'])->name('admin.student.index');
+
+
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/admin/about', [AboutController::class, 'index']);
 
-Route::get('/admin/students', [StudentController::class, 'index'])->name('admin.student.index');
 
 Route::get('/admin/classroom', [ClassroomController::class, 'index']);
 

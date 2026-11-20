@@ -21,33 +21,32 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form
-            action="{{ route('admin.student.store') }}"
-            method="POST"
-            class="p-4">
-
+            <form action="{{ route('admin.student.store') }}" method="POST" class="p-4">
                 @csrf
                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                     <div>
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type your name" required="">
+                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="Type student name" required="">
                     </div>
                     <div>
-                        <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIS</label>
-                        <input type="text" name="brand" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="NIS" required="">
+                        <label for="nis" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIS</label>
+                        <!-- Ubah name="brand" menjadi name="nis", type text ganti number -->
+                        <input type="number" name="nis" id="nis" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="NIS" required="">
                     </div>
                     <div>
-                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                        <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Address" required="">
+                        <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                        <!-- Ubah name="price" menjadi name="address", type number ganti text -->
+                        <input type="text" name="address" id="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="Address" required="">
                     </div>
                     <div>
-                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Class</label>
-                        <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option selected="">Select Class</option>
-                            <option value="TV">PPLG</option>
-                            <option value="PC">Animasi</option>
-                            <option value="GA">DKV TG</option>
-                            <option value="PH">DKV DG</option>
+                        <label for="classroom_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Class</label>
+                        <!-- Ubah id dan name menjadi classroom_id -->
+                        <select name="classroom_id" id="classroom_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required>
+                            <option value="" selected disabled>Select Class</option>
+                            <!-- Looping data class dari database -->
+                            @foreach ($classrooms as $class)
+                                <option value="{{ $class->id }}">{{ $class->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
