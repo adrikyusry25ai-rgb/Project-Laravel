@@ -9,19 +9,11 @@ class AboutController extends Controller
 
 
     public function index()
-    {
-            $student = [
+{
+    return view('admin.about', [
         'title' => 'About Page',
-        'nama' => 'Adrik',
-        'kelas' => '11 ppllg 3',
-    ];
-        return view('admin.about', [
-            'title' => 'About Page',
-            'nama' => 'Adrik',
-            'kelas' => '11 ppllg 3',
-            'student' => $student
-        ]
-
-        );
-    }
+        'nama'  => 'Adrik',
+        'kelas' => '11 PPLG 3',
+    ]);
+}
 }

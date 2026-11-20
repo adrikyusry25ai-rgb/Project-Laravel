@@ -25,6 +25,17 @@ public function store(Request $request)
     return redirect()->route('admin.classroom.index')
         ->with('success', 'Kelas berhasil ditambahkan.');
 }
+public function destroy(Classroom $classroom)
+{
+    if ($classroom->students()->exists()) {
+        return back()->withErrors(['delete' => 'Kelas tidak bisa dihapus karena masih memiliki siswa.']);
+    }
+
+    $classroom->delete();
+
+    return redirect()->route('admin.classroom.index')
+        ->with('success', 'Kelas berhasil dihapus.');
+}
 }
 
 

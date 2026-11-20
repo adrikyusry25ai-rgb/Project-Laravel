@@ -40,6 +40,11 @@ Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/admin/about', [AboutController::class, 'index']);
 
+Route::delete('/admin/students/{student}', [StudentController::class, 'destroy'])->name('admin.student.destroy');
+Route::delete('/admin/classroom/{classroom}', [ClassroomController::class, 'destroy'])->name('admin.classroom.destroy');
+Route::delete('/admin/teachers/{teacher}', [TeachersController::class, 'destroy'])->name('admin.teacher.destroy');
+Route::delete('/admin/subjects/{subject}', [SubjectsController::class, 'destroy'])->name('admin.subject.destroy');
+
 
 // Route::get('/admin/classroom', [ClassroomController::class, 'index']);
 

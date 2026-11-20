@@ -24,4 +24,15 @@ public function store(Request $request)
     return redirect()->route('admin.subject.index')
         ->with('success', 'Mata pelajaran berhasil ditambahkan.');
 }
+public function destroy(Subjects $subject)
+{
+    if ($subject->teacher()->exists()) {
+        return back()->withErrors(['delete' => 'Mapel tidak bisa dihapus karena masih diajar oleh guru.']);
+    }
+
+    $subject->delete();
+
+    return redirect()->route('admin.subject.index')
+        ->with('success', 'Mata pelajaran berhasil dihapus.');
+}
 }
